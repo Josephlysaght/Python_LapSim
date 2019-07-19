@@ -1,15 +1,19 @@
 from tkinter import *
+import tkinter
 #from CarSetup import *
 from TyreSetup import *
 from tkinter import filedialog
+from trackimport import *
+import varibles
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
+
 
 def donothing():
    filewin = Toplevel(root)
    button = Button(filewin, text="Your shit!!!!!")
    button.pack()
-
-def trackload():
-    root.fname = filedialog.askopenfilename(title = "Select file", filetypes=(("Json Files", "*.json"),))
    
 root = Tk()
 root.title("Seppie LapSim")
@@ -19,7 +23,7 @@ full_width = root.winfo_screenwidth()
 full_height = root.winfo_screenheight()
 # Setting full screen geometry 
 root.geometry("%dx%d+-10+0" % (full_width, full_height))
-
+#root.geometry("%dx%d+-10+0" % (200, 200))
 #Creating menu
 menubar = Menu(root)
 
@@ -48,8 +52,16 @@ menubar.add_cascade(label="Help", menu=helpmenu)
 root.config(menu=menubar)
 
 #---------------------------------------------------------Main Window Display-----------------------------------------------------------------------
+trackload.has_been_loaded = False
+n = 0
+while True:
+    root.update_idletasks()
+    root.update()
+    if trackload.has_been_loaded:
+       fig = Figure(figsize=(5, 4), dpi=100)
+       fig.add_subplot(111).plot(varibles.racing_linex,varibles.racing_liney)
 
-
-
-#------------------------------------------------------Create main view --------------------------------------------------------------------------
-root.mainloop()
+       canvas = FigureCanvasTkAgg(fig, master=root)
+       canvas.draw()
+       canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+       trackload.has_been_loaded = False
