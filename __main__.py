@@ -3,6 +3,7 @@ from functions.CarSetup import *
 from functions.TyreSetup import *
 from functions.curvaturecalc import *
 from functions.trackimport import *
+from functions.apexfinder import *
 import varibles
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg

@@ -37,9 +37,9 @@ def calccur():
     varibles.curvature = np.sign(varibles.YawDer) * varibles.curvature;
 
     b, a = signal.butter(2, 0.05, 'low');
-    varibles.filteredcurv = signal.filtfilt(b, a, varibles.curvature)
+    varibles.fcurv = signal.filtfilt(b, a, varibles.curvature)
 
-    steps = np.arange(varibles.trackpoints, dtype=float)
-    # plt.plot(steps, varibles.curvature)
-    plt.plot(steps, varibles.filteredcurv)
-    plt.show()
+    # steps = np.arange(varibles.trackpoints, dtype=float)
+    #     # # plt.plot(steps, varibles.curvature)
+    #     # plt.plot(steps, varibles.fcurv)
+    #     # plt.show()
