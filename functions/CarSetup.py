@@ -54,5 +54,6 @@ class quitButton(Button):
         self['text'] = '   OK    '      
         self['command'] = parent.destroy
         self.grid(row=8,column=1)
+        varibles.carloaded_correctly = 1;
 
    

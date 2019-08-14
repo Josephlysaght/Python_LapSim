@@ -1,9 +1,7 @@
 import varibles
 import numpy as np
 import math
-import matplotlib.pyplot as plt
 from scipy import signal
-
 
 def calccur():
     i = 0
@@ -36,10 +34,12 @@ def calccur():
     varibles.YawDer = np.gradient(varibles.yawsign);
     varibles.curvature = np.sign(varibles.YawDer) * varibles.curvature;
 
-    b, a = signal.butter(2, 0.05, 'low');
-    varibles.fcurv = signal.filtfilt(b, a, varibles.curvature)
+    b1, a1 = signal.butter(2, 0.05, 'low');
+    varibles.fcurv = signal.filtfilt(b1, a1, varibles.curvature)
 
-    # steps = np.arange(varibles.trackpoints, dtype=float)
-    #     # # plt.plot(steps, varibles.curvature)
-    #     # plt.plot(steps, varibles.fcurv)
-    #     # plt.show()
+    del i,b,a,c,A,end,b1,a1;
+
+
+
+
+

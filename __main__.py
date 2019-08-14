@@ -4,10 +4,10 @@ from functions.TyreSetup import *
 from functions.curvaturecalc import *
 from functions.trackimport import *
 from functions.apexfinder import *
+from functions.Simulation import *
 import varibles
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
 
 def donothing():
    filewin = Toplevel(root)
@@ -21,17 +21,18 @@ root.title("Seppie LapSim")
 full_width = root.winfo_screenwidth()
 full_height = root.winfo_screenheight()
 # Setting full screen geometry 
-#root.geometry("%dx%d+-10+0" % (full_width, full_height))
-root.geometry("%dx%d+-10+0" % (200, 200))
+root.geometry("%dx%d+-10+0" % (full_width, full_height))
+#root.geometry("%dx%d+-10+0" % (200, 200))
 #Creating menu
 menubar = Menu(root)
+
 
 #----------------------------File menu-------------------------
 filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Set Car Parameters", command=carsettings)
 filemenu.add_command(label="Open Tyre Parameters", command=SetTyre)
 filemenu.add_command(label="Load RaceTrack", command=trackload)
-filemenu.add_command(label="Something Else", command=donothing)
+filemenu.add_command(label="Run Simulation", command=start)
 filemenu.add_separator()
 filemenu.add_command(label="Exit", command=root.destroy)
 menubar.add_cascade(label="File", menu=filemenu)
@@ -70,5 +71,6 @@ while True:
        canvas = FigureCanvasTkAgg(fig, master=root)
        canvas.draw()
        canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+       varibles.trackloaded_correctly = 1;
        trackload.has_been_loaded = False
        
